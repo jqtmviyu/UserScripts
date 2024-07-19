@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         mikan homepage only shows subscriptions
 // @name:zh      mikan首页只显示订阅
-// @name:zh-CN   mikan首页只显示订阅
+// @name:zh-cn   mikan首页只显示订阅
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  The mikan Home only shows subscriptions.
