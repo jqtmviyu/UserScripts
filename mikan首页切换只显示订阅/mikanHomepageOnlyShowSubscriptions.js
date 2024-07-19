@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         mikan homepage only shows subscriptions
-// @name:zh      mikan首页只显示订阅
+// @name         mikan首页只显示订阅
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  The mikan Home only shows subscriptions.
 // @match        https://mikanani.me/
 // @match        https://mikanime.tv/
+// @description  切换mikan首页只显示订阅,纵向显示番剧信息
 // ==/UserScript==
 
 ;(function () {
