@@ -4,7 +4,8 @@
 // @match       https://pan.baidu.com/disk/main*
 // @version     0.1
 // @author      -
-// @description 8/21/2024, 2:01:46 AM
+// @run-at      document-idle
+// @description 检测到ai助手,自动跳转回旧版网页
 // ==/UserScript==
 (function() {
   'use strict';
