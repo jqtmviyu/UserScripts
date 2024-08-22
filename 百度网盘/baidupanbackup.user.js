@@ -4,13 +4,28 @@
 // @match       https://pan.baidu.com/disk/main*
 // @version     0.1
 // @author      -
-// @run-at      document-idle
 // @description 检测到ai助手,自动跳转回旧版网页
 // ==/UserScript==
-(function() {
-  'use strict';
-  var btn = document.querySelector('.nd-chat-ai-btn');
-  if (btn) {
-    window.location.href = 'https://pan.baidu.com/disk/home?from=newversion&stayAtHome=true#/all?path=%2F&vmode=list';
+function redirectToHomeWithPath() {
+  // 获取当前页面的 URL
+  const currentUrl = window.location.href
+
+  // 使用 URL 构造函数解析当前 URL
+  const url = new URL(currentUrl)
+
+  // 判断当前 URL 是否为 https://pan.baidu.com/disk/main
+  if (url.pathname == '/disk/main') {
+    // 获取 path 参数
+    const pathParam = url.searchParams.get('path')
+    // 构建新的 URL
+    const newUrl = `https://pan.baidu.com/disk/home?from=newversion&stayAtHome=true#/all?path=${encodeURIComponent(
+      pathParam
+    )}&vmode=list`
+
+    // 重定向到新的 URL
+    window.location.href = newUrl
   }
-})();
+}
+
+// 调用
+redirectToHomeWithPath()
