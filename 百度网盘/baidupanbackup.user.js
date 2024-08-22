@@ -2,7 +2,7 @@
 // @name        百度网盘回到旧版
 // @namespace   Violentmonkey Scripts
 // @match       https://pan.baidu.com/disk/main*
-// @version     0.1
+// @version     0.2
 // @author      -
 // @description 检测到ai助手,自动跳转回旧版网页
 // ==/UserScript==
