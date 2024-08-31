@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match        *://*/web/index.html*
 // @grant       none
-// @version     0.1
+// @version     0.2
 // @author      -
 // @description https://github.com/Nolovenodie/emby-crx的脚本版,加入图片滑动功能
 // ==/UserScript==
@@ -737,7 +737,7 @@ function applyStyle() {
 // 加载jQuery
 (function() {
   var script = document.createElement('script');
-  script.src = 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-10-y/jquery/3.6.0/jquery.min.js';
+  script.src = 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
   script.type = 'text/javascript';
   document.head.appendChild(script);
   script.onload = function() {
