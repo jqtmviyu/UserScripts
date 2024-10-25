@@ -4,7 +4,7 @@
 // @name:zh      embyLaunchIINA
 // @name:zh-CN   embyLaunchIINA
 // @namespace    http://tampermonkey.net/
-// @version      0.0.10
+// @version      0.0.11
 // @description  emby launch extetnal player
 // @description:zh-cn emby调用外部播放器
 // @description:en  emby to external player
@@ -185,7 +185,7 @@
     } else {
       streamUrl += `stream.${mediaSource.Container}`
     }
-    streamUrl += `?api_key=${ApiClient.accessToken()}&Static=true&MediaSourceId=${mediaSourceId}`
+    streamUrl += `?api_key=${ApiClient.accessToken()}&Static=true&MediaSourceId=${mediaSourceId}&DeviceId=${ApiClient._deviceId}`
     let position = parseInt(itemInfo.UserData.PlaybackPositionTicks / 10000)
     let intent = await getIntent(mediaSource, position)
     console.log(streamUrl, subUrl, intent)
