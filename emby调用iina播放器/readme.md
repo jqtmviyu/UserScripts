@@ -13,11 +13,14 @@ https://github.com/jqtmviyu/UserScripts/issues
 ### 功能
 
 * 根据ua显示不同的播放器
-* macos: iina
+* macos: iina/IINAServer
 * 移动端: nplayer
-* window: pot
+* window: potplayer
 * 其他: vlc
 * 调用播放器60秒后自动标记为已播放
+* 通过本地服务器, 可以让iina加载strm文件的同时加载远程字幕, 需要启动`IINAServer`
+  * `IINAServer`的默认`port`为`8080`
+  * 如果需要修改`port`, 请修改`embyLaunchIINA.user.js`中的`IINAServerPort`
 
 ### 安装
 
