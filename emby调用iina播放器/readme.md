@@ -18,7 +18,7 @@ https://github.com/jqtmviyu/UserScripts/issues
 * window: potplayer
 * 其他: vlc
 * 调用播放器60秒后自动标记为已播放
-* 通过本地服务器, 可以让iina加载strm文件的同时加载远程字幕, 需要启动`IINAServer`
+* 通过本地服务器, 可以让iina加载strm文件的同时加载远程字幕, 需要后台运行[`IINAServer`](https://github.com/jqtmviyu/IINAServer)
   * `IINAServer`的默认`port`为`8080`
   * 如果需要修改`port`, 请修改`embyLaunchIINA.user.js`中的`IINAServerPort`
 
