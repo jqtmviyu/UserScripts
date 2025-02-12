@@ -71,8 +71,6 @@
     document.querySelector("div[is='emby-scroller']:not(.hide) #externalPlayer").onclick = () => {
       // 调用外部播放器
       eval('emby'+externalPlayer+'()')
-      // 30秒后设置为已播放
-      setPlayed()
     }
   }
 
@@ -229,7 +227,7 @@
     }
   }
 
-  // 打勾标记已观看
+  // 60秒后打勾标记已观看
   function setPlayed() {
     const btnPlaystateElement = document.querySelector(
       "div[is='emby-scroller']:not(.hide) .mainDetailButtons .btnPlaystate"
@@ -251,6 +249,7 @@
     let iinaUrl = `iina://weblink?url=${encodeURIComponent(mediaInfo.streamUrl)}&new_window=1`
     console.log(`iinaUrl= ${iinaUrl}`)
     window.open(iinaUrl, '_blank')
+    setPlayed()
   }
 
   async function embyIINAServer() {
@@ -261,6 +260,20 @@
     }
     console.log(url)
     fetch(url)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('本地服务器没有响应')
+        }
+        return res.text()
+      })
+      .then(text => {
+        if (text.startsWith('正在播放视频')) {
+          setPlayed()
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      })
   }
 
   async function embyPotPlayer() {
@@ -269,6 +282,7 @@
     let poturl = `potplayer://${encodeURI(mediaInfo.streamUrl)} /sub=${encodeURI(mediaInfo.subUrl)} /current /seek=${getSeek(intent.position)} /title=${intent.title}`;
     console.log(poturl)
     window.open(poturl, '_blank')
+    setPlayed()
   }
 
   //https://wiki.videolan.org/Android_Player_Intents/
@@ -293,6 +307,7 @@
     }
     console.log(vlcUrl)
     window.open(vlcUrl, '_blank')
+    setPlayed()
   }
 
   //https://sites.google.com/site/mxvpen/api
@@ -309,6 +324,7 @@
     //let mxUrl = `intent:${encodeURI(mediaInfo.streamUrl)}#Intent;package=com.mxtech.videoplayer.pro;S.title=${encodeURI(intent.title)};i.position=${intent.position};end`;
     console.log(mxUrl)
     window.open(mxUrl, '_blank')
+    setPlayed()
   }
 
   async function embyNPlayer() {
@@ -319,6 +335,7 @@
         : `nplayer-${encodeURI(mediaInfo.streamUrl)}`
     console.log(nUrl)
     window.open(nUrl, '_blank')
+    setPlayed()
   }
 
   //infuse
@@ -327,6 +344,7 @@
     let infuseUrl = `infuse://x-callback-url/play?url=${encodeURIComponent(mediaInfo.streamUrl)}`
     console.log(`infuseUrl= ${infuseUrl}`)
     window.open(infuseUrl, '_blank')
+    setPlayed()
   }
 
   //MPV
@@ -352,6 +370,7 @@
 
     console.log(MPVUrl)
     window.open(MPVUrl, '_blank')
+    setPlayed()
   }
 
   function getOS() {
