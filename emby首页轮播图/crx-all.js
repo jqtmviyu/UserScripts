@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name        emby首页轮播图
-// @namespace   Violentmonkey Scripts
+// @namespace   https://github.com/jqtmviyu/UserScripts
 // @match        *://*/web/index.html*
 // @grant       none
 // @version     0.2
-// @author      -
+// @author      jqtmviyu
 // @description https://github.com/Nolovenodie/emby-crx的脚本版,加入图片滑动功能
 // ==/UserScript==
 

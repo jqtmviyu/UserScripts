@@ -3,7 +3,7 @@
 // @name:en      embyLaunchIINA
 // @name:zh      embyLaunchIINA
 // @name:zh-CN   embyLaunchIINA
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/jqtmviyu/UserScripts
 // @version      0.0.12
 // @description  emby launch extetnal player
 // @description:zh-cn emby调用外部播放器

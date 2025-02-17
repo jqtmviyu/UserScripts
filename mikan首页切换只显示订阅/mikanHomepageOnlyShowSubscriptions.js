@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         mikan首页只显示订阅
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/jqtmviyu/UserScripts
 // @version      0.1
 // @description  The mikan Home only shows subscriptions.
 // @match        https://mikanani.me/

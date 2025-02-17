@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         视频选择器
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/jqtmviyu/UserScripts
 // @version      0.1
 // @description  添加按钮以选择所有视频文件
-// @author       Your name
+// @author       jqtmviyu
 // @match        *://webdav.*/*
 // @grant        none
 // ==/UserScript==

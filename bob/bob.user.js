@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         bob划词翻译
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/jqtmviyu/UserScripts
 // @version      0.1
 // @description  Show popup on text selection and trigger keyboard shortcut
-// @author       Your name
+// @author       jqtmviyu
 // @match        *://*/*
 // @grant        GM_xmlhttpRequest
 // @connect      localhost

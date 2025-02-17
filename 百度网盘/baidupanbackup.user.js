@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name        百度网盘回到旧版
-// @namespace   Violentmonkey Scripts
+// @namespace   https://github.com/jqtmviyu/UserScripts
 // @match       https://pan.baidu.com/disk/main*
 // @version     0.3
-// @author      -
+// @author      jqtmviyu
 // @description 检测到ai助手,自动跳转回旧版网页
 // @downloadURL https://update.greasyfork.org/scripts/504409/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E5%9B%9E%E5%88%B0%E6%97%A7%E7%89%88.user.js
 // @updateURL https://update.greasyfork.org/scripts/504409/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E5%9B%9E%E5%88%B0%E6%97%A7%E7%89%88.meta.js
