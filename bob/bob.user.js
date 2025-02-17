@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         BobAction
+// @name         bob划词翻译
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Show popup on text selection and trigger keyboard shortcut
@@ -84,7 +84,7 @@
             },
             data: JSON.stringify({ data: selectedText }),
             onload: function(response) {
-              // console.log('翻译请求已发送')
+              console.log('翻译请求已发送')
             },
             onerror: function(error) {
               console.error('请求失败:', error)
