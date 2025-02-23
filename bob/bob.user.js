@@ -1,12 +1,14 @@
 // ==UserScript==
 // @name         bob划词翻译
 // @namespace    https://github.com/jqtmviyu/UserScripts
-// @version      0.1
+// @version      0.2
 // @description  Show popup on text selection and trigger keyboard shortcut
 // @author       jqtmviyu
 // @match        *://*/*
 // @grant        GM_xmlhttpRequest
 // @connect      localhost
+// @downloadURL https://update.greasyfork.org/scripts/527218/bob%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91.user.js
+// @updateURL https://update.greasyfork.org/scripts/527218/bob%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91.meta.js
 // ==/UserScript==
 
 ;(function () {
@@ -45,56 +47,47 @@
   // 监听选中文本事件
   document.addEventListener('mouseup', e => {
     const selection = window.getSelection()
-    // console.log('mouseup 事件触发')
+    const selectedText = selection.toString().trim() // 获取选中的文本并去除空白
 
-    // 检查是否有有效的选区
-    if (selection.anchorNode) {
-      const selectedText = selection.toString().trim()
-      // console.log('选中的文本:', selectedText)
+    // 检查是否在输入框或文本区域中
+    const target = e.target
+    if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+      return // 如果是在输入框或文本区域中，直接返回
+    }
 
-      // 如果有选中文本
-      if (selectedText) {
-        // 移除旧的弹出框
-        if (popup && popup.parentNode) {
-          // console.log('移除旧的弹出框')
-          popup.parentNode.removeChild(popup)
-        }
+    // 如果有选中文本
+    if (selectedText) {
+      // 创建新的弹出框
+      popup = createPopup()
+      document.body.appendChild(popup)
 
-        // 创建新的弹出框
-        popup = createPopup()
-        document.body.appendChild(popup)
+      // 设置弹出框位置
+      const rect = selection.getRangeAt(0).getBoundingClientRect()
+      popup.style.left = `${rect.right}px`
+      popup.style.top = `${rect.top - 30}px`
 
-        // 设置弹出框位置
-        const rect = selection.getRangeAt(0).getBoundingClientRect()
-        popup.style.left = `${rect.right}px`
-        popup.style.top = `${rect.top - 30}px`
-        // console.log('弹出框位置:', rect.right, rect.top - 30)
-
-        // 点击弹出框发送请求
-        popup.addEventListener('mousedown', e => {
-          // console.log('弹出框 mousedown 事件触发')
-          e.preventDefault()
-          e.stopPropagation()
-          // console.log('选中的文本:', selectedText)
-          GM_xmlhttpRequest({
-            method: 'POST',
-            url: 'http://localhost:8081/translate',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            data: JSON.stringify({ data: selectedText }),
-            onload: function(response) {
-              console.log('翻译请求已发送')
-            },
-            onerror: function(error) {
-              console.error('请求失败:', error)
-            }
-          })
-          cleanup()
+      // 点击弹出框发送请求
+      popup.addEventListener('mousedown', e => {
+        e.preventDefault()
+        e.stopPropagation()
+        GM_xmlhttpRequest({
+          method: 'POST',
+          url: 'http://localhost:8081/translate',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify({ data: selectedText }),
+          onload: function(response) {
+            console.log('翻译请求已发送')
+          },
+          onerror: function(error) {
+            console.error('请求失败:', error)
+          }
         })
-      } else {
         cleanup()
-      }
+      })
+    } else {
+      cleanup() // 如果没有选中文本，清理
     }
   })
 })()
