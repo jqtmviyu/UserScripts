@@ -34,26 +34,20 @@
     return div
   }
 
-
-  // 清理选中和弹出框
+  // 清理弹出框
   function cleanup() {
-    // console.log('清理选中和弹出框')
+    // console.log('清理弹出框')
     if (popup && popup.parentNode) {
       popup.parentNode.removeChild(popup)
     }
-    window.getSelection().removeAllRanges()
   }
 
   // 监听选中文本事件
   document.addEventListener('mouseup', e => {
+    // 如果弹出框存在，则清理弹出框
+    cleanup()
     const selection = window.getSelection()
     const selectedText = selection.toString().trim() // 获取选中的文本并去除空白
-
-    // 检查是否在输入框或文本区域中
-    const target = e.target
-    if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
-      return // 如果是在输入框或文本区域中，直接返回
-    }
 
     // 如果有选中文本
     if (selectedText) {
@@ -67,27 +61,31 @@
       popup.style.top = `${rect.top - 30}px`
 
       // 点击弹出框发送请求
-      popup.addEventListener('mousedown', e => {
-        e.preventDefault()
-        e.stopPropagation()
+      popup.addEventListener('mouseup', e => {
+        e.preventDefault() // 阻止默认行为
+        e.stopPropagation() // 阻止事件冒泡
         GM_xmlhttpRequest({
           method: 'POST',
           url: 'http://localhost:8081/translate',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
           data: JSON.stringify({ data: selectedText }),
-          onload: function(response) {
+          onload: function (response) {
             console.log('翻译请求已发送')
           },
-          onerror: function(error) {
+          onerror: function (error) {
             console.error('请求失败:', error)
-          }
+          },
         })
         cleanup()
       })
-    } else {
-      cleanup() // 如果没有选中文本，清理
+
+      // 阻止 popup 的 mouseup 事件冒泡
+      popup.addEventListener('mousedown', e => {
+        e.preventDefault() // 阻止默认行为
+        e.stopPropagation() // 阻止 mouseup 事件冒泡
+      })
     }
   })
 })()
