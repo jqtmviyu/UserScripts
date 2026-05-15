@@ -1,0 +1,1 @@
+- fix-codium: codium 升级后需要重新把插件市场改回vscode的
